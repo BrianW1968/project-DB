@@ -66,7 +66,7 @@ def get_posts(db: Session = Depends(get_db), get_current_user: int = Depends(oau
 #    print(posts)
 #    return{"data": posts}
 
-@router.get("/{id}")
+@router.get("/{id}", response_model=List[schemas.PostOut])
 def get_post(id: str, db: Session = Depends(get_db), get_current_user: int = Depends(oauth2.get_current_user)):
 
     #post = db.query(models.Post).filter(models.Post.owner_id == id).all
