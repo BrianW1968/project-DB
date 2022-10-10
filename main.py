@@ -7,6 +7,7 @@ from config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
 #models.Base.metadata.create_all(bind=engine)
+# some text
 
 app = FastAPI()
 
