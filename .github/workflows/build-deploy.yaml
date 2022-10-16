@@ -4,13 +4,14 @@ on: [push, pull_request]
 
 jobs:
   job1:
-    env:
-      DATABASE_HOSTNAME: localhost
+    environment:
+      name: testing
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
       DATABASE_PORT: 5432
-      DATABASE_PASSWORD: 7501Fitness!
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
       DATABASE_NAME: fastapi
       DATABASE_USERNAME: postgres
-      SECRET_KEY: 09034582923492634ABCD239824ABCE9138492847ADBCE29898749237948394857395873
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
     runs-on: ubuntu-latest
