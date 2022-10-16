@@ -13,8 +13,6 @@ jobs:
       SECRET_KEY: 09034582923492634ABCD239824ABCE9138492847ADBCE29898749237948394857395873
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
-
-
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
