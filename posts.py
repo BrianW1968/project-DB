@@ -1,7 +1,7 @@
 
 from unittest import skipUnless
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
-import models, schemas, database
+import schemas, database, models
 from sqlalchemy.orm import Session
 from database import get_db
 from typing import List, Optional
@@ -15,7 +15,7 @@ router = APIRouter(
     tags = ['Posts']
 )
 
-@router.delete('/{id}', response_model=List[schemas.PostOut])
+@router.delete('/{id}', response_model=List[schemas.Post])
 def delete_post(id: int, db: Session = Depends(get_db), get_current_user: int = Depends(oauth2.get_current_user)):
     post_query = db.query(models.Post).filter(models.Post.id == id)
     #index = find_index_post(id)
@@ -48,6 +48,7 @@ def create_posts(post: schemas.PostCreate, db: Session = Depends(get_db), get_cu
     db.commit()
     db.refresh(new_post)
     return {"data": new_post}
+    #return new_post
 
 @router.get("/")
 def get_posts(db: Session = Depends(get_db), get_current_user: int = Depends(oauth2.get_current_user), limit: int = 10, skip: int = 0, search: Optional[str] = ''):
@@ -66,7 +67,7 @@ def get_posts(db: Session = Depends(get_db), get_current_user: int = Depends(oau
 #    print(posts)
 #    return{"data": posts}
 
-@router.get("/{id}", response_model=List[schemas.PostOut])
+@router.get("/{id}")
 def get_post(id: str, db: Session = Depends(get_db), get_current_user: int = Depends(oauth2.get_current_user)):
 
     #post = db.query(models.Post).filter(models.Post.owner_id == id).all

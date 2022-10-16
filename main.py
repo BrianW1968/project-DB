@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 import models, posts, user, auth
 from database import engine
 import posts, auth, vote
@@ -38,7 +38,7 @@ app.include_router(user.router)
 app.include_router(auth.router)
 app.include_router(vote.router)
 
-@app.get("/")
+@app.get("/", status_code=status.HTTP_200_OK)
 async def root():
     return {"message": "Hello World, it is great"}
 
