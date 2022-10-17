@@ -18,7 +18,7 @@ class UserLogin(BaseModel):
 class UserOut(BaseModel):
     id: int
     email: EmailStr
-    ceated_at: datetime
+    created_at: datetime
     class Config:
          orm_mode = True
 
@@ -37,7 +37,7 @@ class PostBase(BaseModel):
 
 class Post(PostBase):
     id: int
-    ceated_at: datetime
+    created_at: datetime
     owner_id: int
     
 
