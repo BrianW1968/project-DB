@@ -40,7 +40,7 @@ app.include_router(vote.router)
 
 @app.get("/", status_code=status.HTTP_200_OK)
 async def root():
-    return {"message": "Hello World, suucess deploying through CI/CA"}
+    return {"message": "Hello World, suucess deploying through CI/CD pipeline"}
 
 
 
