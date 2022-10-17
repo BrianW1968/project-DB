@@ -3,7 +3,7 @@ name: build and deploy code
 on: [push, pull_request]
 
 jobs:
-  job1:
+  build:
     environment:
       name: testing
     env:
@@ -67,17 +67,17 @@ jobs:
       #     cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/fastapi:buildcache,mode=max
       # - name: Image digest
       #   run:  echo ${{steps.docker_build.outputs.digest}}
-    deploy:
-      runs-on:  ubuntu-latest
-      needs:  [build]
-      environment:
-        name: production
-      steps:
-        - name: pulling git repo
-          uses: actions/checkout@v2
-        - name: deploying to Heroku
-          uses: akileshns/heroku-deploy@v3.12.12
-          with:
-            heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-            heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}   
-            heroku_email: ${{ secrets.HEROKU_EMAIl }}
+  deploy:
+    runs-on:  ubuntu-latest
+    needs:  [build]
+    environment:
+      name: production
+    steps:
+      - name: pulling git repo
+        uses: actions/checkout@v2
+      - name: deploying to Heroku
+        uses: akileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}   
+          heroku_email: ${{ secrets.HEROKU_EMAIl }}
