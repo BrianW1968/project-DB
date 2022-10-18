@@ -92,5 +92,5 @@ jobs:
       - name: DigitalOcean App Platform deployment
         uses: digitalocean/app_action@main
         with:
-          app_name: first-project
+          app_name: ubuntu-s-1vcpu-1gb-sfo3-01
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
